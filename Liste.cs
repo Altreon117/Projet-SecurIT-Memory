@@ -60,7 +60,7 @@ namespace Memory
                 Cards.Add(row);
             }
         }
-        
+
         public bool IsDouble(List<string> cartes, string carte)
         {
             int count = 0;
@@ -87,7 +87,7 @@ namespace Memory
             {
                 for (int j = 0; j < Columns; j++)
                 {
-                    if (Cards[i][j].State == "Trouvée" || Cards[i][j].State == "Révélée")
+                    if (Cards[i][j].Status == Carte.State.Trouvée || Cards[i][j].Status == Carte.State.Révélée)
                     {
                         Console.Write(Cards[i][j].ImagePath + " ");
                     }
@@ -106,7 +106,7 @@ namespace Memory
         {
             foreach (var card in AllCards)
             {
-                Console.WriteLine($"Id: {card.Id}, ImagePath: {card.ImagePath}, State: {card.State}");
+                Console.WriteLine($"Id: {card.Id}, ImagePath: {card.ImagePath}, State: {card.Status}");
             }
         }
 
@@ -163,7 +163,7 @@ namespace Memory
         {
             for (int i = 0; i < AllCards.Count; i++)
             {
-                if (AllCards[i].State != "Trouvée")
+                if (AllCards[i].Status != Carte.State.Trouvée)
                 {
                     return false;
                 }

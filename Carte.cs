@@ -6,28 +6,29 @@ namespace Memory
     {
         public int Id { get; set; }
         public string ImagePath { get; set; }
-        public string State { get; set; }
-        
+        public enum State { Cachée, Révélée, Trouvée }
+        public State Status { get; set; }
+
         public Carte(int id, string imagePath)
         {
             Id = id;
             ImagePath = imagePath;
-            State = "Cachée";
+            Status = State.Cachée;
         }
 
         public void Reveal()
         {
-            State = "Révélée";
+            Status = State.Révélée;
         }
 
         public void Hide()
         {
-            State = "Cachée";
+            Status = State.Cachée;
         }
 
         public void Paired()
         {
-            State = "Trouvée";
+            Status = State.Trouvée;
         }
     }
 }
