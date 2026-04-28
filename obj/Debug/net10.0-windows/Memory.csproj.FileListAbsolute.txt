@@ -1,0 +1,10 @@
+C:\Users\rahp1\source\repos\Memory\Memory\obj\Debug\net10.0-windows\Memory.Form1.resources
+C:\Users\rahp1\source\repos\Memory\Memory\obj\Debug\net10.0-windows\Memory.csproj.GenerateResource.cache
+C:\Users\rahp1\source\repos\Memory\Memory\obj\Debug\net10.0-windows\Memory.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rahp1\source\repos\Memory\Memory\obj\Debug\net10.0-windows\Memory.AssemblyInfoInputs.cache
+C:\Users\rahp1\source\repos\Memory\Memory\obj\Debug\net10.0-windows\Memory.AssemblyInfo.cs
+C:\Users\rahp1\source\repos\Memory\Memory\obj\Debug\net10.0-windows\Memory.csproj.CoreCompileInputs.cache
+C:\Users\rahp1\source\repos\Memory\Memory\bin\Debug\net10.0-windows\Memory.exe
+C:\Users\rahp1\source\repos\Memory\Memory\obj\Debug\net10.0-windows\Memory.dll
+C:\Users\rahp1\source\repos\Memory\Memory\obj\Debug\net10.0-windows\refint\Memory.dll
+C:\Users\rahp1\source\repos\Memory\Memory\obj\Debug\net10.0-windows\Memory.pdb
