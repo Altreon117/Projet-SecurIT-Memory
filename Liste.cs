@@ -94,8 +94,6 @@ namespace Memory
                     else
                     {
                         Console.Write("? ");
-                        /// Affiche l'image de la carte pour les tests
-                        ///Console.Write(Cards[i][j].ImagePath + " ");
                     }
                 }
                 Console.WriteLine();

@@ -1,10 +1,260 @@
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Drawing;
+using Memory;
+using Timer = System.Windows.Forms.Timer;
+
 namespace Memory
 {
     public partial class Form1 : Form
     {
+        private Liste? game;
+        private Button[,]? cardButtons;
+        private Label? scoreLabel;
+        private Label? statusLabel;
+        private Button? resetButton;
+        private int moves = 0;
+        private int pairs = 0;
+        private int selectedCount = 0;
+        private string firstCoordinate = "";
+        private Button? firstButton = null;
+        private Button? secondButton = null;
+        private bool isCheckingPair = false;
+        private Panel? gamePanel;
+
         public Form1()
         {
-            InitializeComponent();
+            this.Text = "Memory Game - Images";
+            this.Width = 900;
+            this.Height = 850;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.BackColor = Color.LightGray;
+
+            CreateUI();
+            LoadImages();
+            StartNewGame();
+        }
+
+        private void CreateUI()
+        {
+            // Panel pour les boutons
+            gamePanel = new Panel();
+            gamePanel.Location = new Point(50, 80);
+            gamePanel.AutoSize = false;
+            gamePanel.Width = 800;
+            gamePanel.Height = 700;
+            gamePanel.BackColor = Color.DarkGray;
+            gamePanel.Name = "gamePanel";
+            this.Controls.Add(gamePanel);
+
+            // Labels
+            scoreLabel = new Label();
+            scoreLabel.Text = "Déplacements: 0 | Paires trouvées: 0";
+            scoreLabel.Location = new Point(50, 20);
+            scoreLabel.AutoSize = true;
+            scoreLabel.Font = new Font("Arial", 12, FontStyle.Bold);
+            this.Controls.Add(scoreLabel);
+
+            statusLabel = new Label();
+            statusLabel.Text = "Sélectionnez deux cartes";
+            statusLabel.Location = new Point(50, 50);
+            statusLabel.AutoSize = true;
+            statusLabel.Font = new Font("Arial", 10);
+            this.Controls.Add(statusLabel);
+
+            // Bouton Reset
+            resetButton = new Button();
+            resetButton.Text = "Nouvelle partie";
+            resetButton.Location = new Point(700, 20);
+            resetButton.Width = 150;
+            resetButton.Height = 30;
+            resetButton.Click += ResetButton_Click;
+            this.Controls.Add(resetButton);
+        }
+
+        private void LoadImages()
+        {
+            // À adapter avec vos images réelles
+            // Pour maintenant, on utilise simplement du texte
+        }
+
+        private void StartNewGame()
+        {
+            // Créer une liste de nombres (16 paires = 32 cartes)
+            List<string> imagePaths = new List<string>
+            {
+                "1", "2", "3", "4", 
+                "5", "6", "7", "8",
+                "9", "10", "11", "12",
+                "13", "14", "15", "16"
+            };
+
+            game = new Liste(imagePaths);
+            cardButtons = new Button[game.Rows, game.Columns];
+            moves = 0;
+            pairs = 0;
+            selectedCount = 0;
+            firstCoordinate = "";
+            firstButton = null;
+            secondButton = null;
+            isCheckingPair = false;
+
+            gamePanel?.Controls.Clear();
+            CreateCardButtons(gamePanel);
+            UpdateScore();
+        }
+
+        private void CreateCardButtons(Panel? panel)
+        {
+            if (panel == null || game == null) return;
+
+            int buttonSize = 80;
+            int spacing = 10;
+
+            for (int i = 0; i < game.Rows; i++)
+            {
+                for (int j = 0; j < game.Columns; j++)
+                {
+                    Button btn = new Button();
+                    btn.Width = buttonSize;
+                    btn.Height = buttonSize;
+                    btn.Left = j * (buttonSize + spacing) + spacing;
+                    btn.Top = i * (buttonSize + spacing) + spacing;
+                    btn.Text = "?";
+                    btn.Font = new Font("Arial", 20, FontStyle.Bold);
+                    btn.BackColor = Color.SteelBlue;
+                    btn.ForeColor = Color.White;
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.Tag = $"{i}:{j}";
+                    btn.Click += CardButton_Click;
+
+                    if (cardButtons != null)
+                    {
+                        cardButtons[i, j] = btn;
+                    }
+                    panel.Controls.Add(btn);
+                }
+            }
+        }
+
+        private void CardButton_Click(object? sender, EventArgs e)
+        {
+            if (isCheckingPair || game == null || cardButtons == null) return;
+
+            Button? btn = sender as Button;
+            if (btn == null) return;
+
+            string coordinates = (string?)btn.Tag ?? "";
+            string[] parts = coordinates.Split(':');
+            int row = int.Parse(parts[0]);
+            int col = int.Parse(parts[1]);
+
+            Carte card = game.Cards[row][col];
+
+            if (card.Status == Carte.State.Trouvée) return;
+            if (card.Status == Carte.State.Révélée) return;
+
+            card.Reveal();
+            btn.Text = card.ImagePath;
+            btn.Enabled = false;
+
+            selectedCount++;
+
+            if (selectedCount == 1)
+            {
+                firstCoordinate = coordinates;
+                firstButton = btn;
+                statusLabel!.Text = "Sélectionnez la deuxième carte";
+            }
+            else if (selectedCount == 2)
+            {
+                moves++;
+                isCheckingPair = true;
+
+                string secondCoordinate = coordinates;
+                secondButton = btn;
+
+                if (game.IsPair(firstCoordinate, secondCoordinate))
+                {
+                    game.PairedCard(firstCoordinate);
+                    game.PairedCard(secondCoordinate);
+                    pairs++;
+
+                    firstButton!.BackColor = Color.LimeGreen;
+                    secondButton!.BackColor = Color.LimeGreen;
+                    firstButton!.Enabled = true;
+                    secondButton!.Enabled = true;
+
+                    statusLabel!.Text = "Paire trouvée! 🎉";
+
+                    if (pairs == game.AllCards.Count / 2)
+                    {
+                        statusLabel!.Text = $"Bravo! Vous avez gagné en {moves} mouvements! 🎊";
+                        resetButton!.Enabled = true;
+                    }
+
+                    selectedCount = 0;
+                    firstCoordinate = "";
+                    firstButton = null;
+                    secondButton = null;
+                    isCheckingPair = false;
+                    UpdateScore();
+                }
+                else
+                {
+                    statusLabel!.Text = "Ce n'est pas une paire. Réessayez!";
+
+                    Timer hideTimer = new Timer();
+                    hideTimer.Interval = 1000;
+                    Button? fb = firstButton;
+                    Button? sb = secondButton;
+                    hideTimer.Tick += (s, args) =>
+                    {
+                        game.HideCard(firstCoordinate);
+                        game.HideCard(secondCoordinate);
+
+                        if (fb != null)
+                        {
+                            fb.Text = "?";
+                            fb.BackColor = Color.SteelBlue;
+                            fb.Enabled = true;
+                        }
+
+                        if (sb != null)
+                        {
+                            sb.Text = "?";
+                            sb.BackColor = Color.SteelBlue;
+                            sb.Enabled = true;
+                        }
+
+                        hideTimer.Stop();
+                        hideTimer.Dispose();
+
+                        selectedCount = 0;
+                        firstCoordinate = "";
+                        firstButton = null;
+                        secondButton = null;
+                        isCheckingPair = false;
+
+                        statusLabel!.Text = "Sélectionnez deux cartes";
+                    };
+                    hideTimer.Start();
+                }
+            }
+        }
+
+        private void ResetButton_Click(object? sender, EventArgs e)
+        {
+            StartNewGame();
+        }
+
+        private void UpdateScore()
+        {
+            if (scoreLabel != null && game != null)
+            {
+                scoreLabel.Text = $"Déplacements: {moves} | Paires trouvées: {pairs} / {game.AllCards.Count / 2}";
+            }
         }
     }
 }

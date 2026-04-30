@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rahp1\\source\\repos\\Memory\\Memory\\Memory.csproj": {}
+    "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Memory.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rahp1\\source\\repos\\Memory\\Memory\\Memory.csproj": {
+    "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Memory.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rahp1\\source\\repos\\Memory\\Memory\\Memory.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Memory.csproj",
         "projectName": "Memory",
-        "projectPath": "C:\\Users\\rahp1\\source\\repos\\Memory\\Memory\\Memory.csproj",
-        "packagesPath": "C:\\Users\\rahp1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rahp1\\source\\repos\\Memory\\Memory\\obj\\",
+        "projectPath": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Memory.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\rahp1\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0-windows"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,7 +41,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net10.0-windows": {
@@ -64,7 +66,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300-preview.0.26177.108/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
