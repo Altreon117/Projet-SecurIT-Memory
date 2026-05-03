@@ -232,15 +232,26 @@ namespace Memory
         {
             soundPlayer?.Stop();
 
-            List<string> imagePaths = new List<string>
+            int pairCount = (gridSize == 6) ? 18 : 8;
+
+            // --- NOUVEAU : Ta liste complète des 18 images ---
+            List<string> allImages = new List<string>
             {
-                "FireWall.png",
-                "Password.png",
-                "Hacker.png",
-                "Server.png",
-                "AntiVirus.png",
-                "Phishing.png"
+                "FireWall.png", "Password.png", "Hacker.png",
+                "Server.png", "AntiVirus.png", "Phishing.png",
+                "Ransomware.png", "Fingerprint.png", "DoubleSecurity.png",
+                "UsbKey.png", "CyberSecurity.png", "IdenttityTheft.png",
+                "VPN.png", "SQLInjection.png", "Encryption.png",
+                "Malware.png", "Trojan.png", "SecureConnection.png"
             };
+
+            List<string> imagePaths = new List<string>();
+
+            // On ajoute exactement le nombre d'images dont on a besoin
+            for (int i = 0; i < pairCount; i++)
+            {
+                imagePaths.Add(allImages[i]);
+            }
 
             game = new Liste(imagePaths);
             cardBoxes = new PictureBox[game.Rows, game.Columns];
@@ -322,6 +333,7 @@ namespace Memory
 
                 if (!fondCharge) g.Clear(Color.White);
 
+                // Plus besoin de nettoyer le nom de l'image, on l'utilise directement !
                 string iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "static", "images", card.ImagePath);
 
                 if (File.Exists(iconPath))
@@ -341,7 +353,8 @@ namespace Memory
                 }
                 else
                 {
-                    g.DrawString(card.ImagePath, new Font("Arial", 14, FontStyle.Bold), Brushes.Black, 20, 100);
+                    string nomSansExtension = card.ImagePath.Replace(".png", "");
+                    g.DrawString(nomSansExtension, new Font("Arial", 14, FontStyle.Bold), Brushes.Black, 20, 100);
                 }
             }
             box.Image = cardImage;
