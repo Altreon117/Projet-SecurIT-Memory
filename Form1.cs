@@ -14,7 +14,8 @@ namespace Memory
         private Label? scoreLabel;
         private Label? timerLabel;
         private Label? statusLabel;
-        private Button? menuButton;
+        private Button? quitButton;
+
         private int moves = 0;
         private int pairs = 0;
         private int selectedCount = 0;
@@ -22,6 +23,7 @@ namespace Memory
         private PictureBox? firstBox = null;
         private PictureBox? secondBox = null;
         private bool isCheckingPair = false;
+
         private Panel? gamePanel;
         private Timer? gameTimer;
         private int seconds = 0;
@@ -53,7 +55,6 @@ namespace Memory
 
         private void CreateUI()
         {
-            // Panel supérieur avec infos
             Panel infoPanel = new Panel();
             infoPanel.Location = new Point(0, 0);
             infoPanel.Width = this.Width;
@@ -61,7 +62,6 @@ namespace Memory
             infoPanel.BackColor = Color.FromArgb(30, 30, 60);
             this.Controls.Add(infoPanel);
 
-            // Label Score
             scoreLabel = new Label();
             scoreLabel.Text = "Essais: 0 | Paires: 0/0";
             scoreLabel.Location = new Point(20, 15);
@@ -70,7 +70,6 @@ namespace Memory
             scoreLabel.ForeColor = Color.Cyan;
             infoPanel.Controls.Add(scoreLabel);
 
-            // Label Chronomètre
             timerLabel = new Label();
             timerLabel.Text = "Temps: 00:00";
             timerLabel.Location = new Point(400, 15);
@@ -79,7 +78,6 @@ namespace Memory
             timerLabel.ForeColor = Color.Lime;
             infoPanel.Controls.Add(timerLabel);
 
-            // Label Statut
             statusLabel = new Label();
             statusLabel.Text = "Sélectionnez deux cartes";
             statusLabel.Location = new Point(600, 15);
@@ -88,18 +86,18 @@ namespace Memory
             statusLabel.ForeColor = Color.White;
             infoPanel.Controls.Add(statusLabel);
 
-            // Bouton Menu
-            menuButton = new Button();
-            menuButton.Text = "↶ Menu";
-            menuButton.Location = new Point(880, 15);
-            menuButton.Width = 80;
-            menuButton.Height = 30;
-            menuButton.BackColor = Color.Orange;
-            menuButton.FlatStyle = FlatStyle.Flat;
-            menuButton.Click += MenuButton_Click;
-            infoPanel.Controls.Add(menuButton);
+            // Bouton Quitter
+            quitButton = new Button();
+            quitButton.Text = "Quitter";
+            quitButton.Location = new Point(880, 15);
+            quitButton.Width = 80;
+            quitButton.Height = 30;
+            quitButton.BackColor = Color.Red;
+            quitButton.ForeColor = Color.White;
+            quitButton.FlatStyle = FlatStyle.Flat;
+            quitButton.Click += QuitButton_Click;
+            infoPanel.Controls.Add(quitButton);
 
-            // Panel pour les cartes
             gamePanel = new Panel();
             gamePanel.Location = new Point(50, 80);
             gamePanel.Width = 900;
@@ -107,7 +105,6 @@ namespace Memory
             gamePanel.BackColor = Color.DarkGray;
             this.Controls.Add(gamePanel);
 
-            // le chronomètre
             gameTimer = new Timer();
             gameTimer.Interval = 1000;
             gameTimer.Tick += GameTimer_Tick;
@@ -124,20 +121,18 @@ namespace Memory
 
         private void StartNewGame()
         {
-            if (game != null)
-            {
-                game = null;
-            }
+            game = null;
 
             List<string> imagePaths = new List<string>();
             int pairCount = (gridSize == 4) ? 8 : 18;
+
             for (int i = 1; i <= pairCount; i++)
-            {
                 imagePaths.Add(i.ToString());
-            }
 
             game = new Liste(imagePaths);
+
             cardBoxes = new PictureBox[game.Rows, game.Columns];
+
             moves = 0;
             pairs = 0;
             selectedCount = 0;
@@ -175,10 +170,7 @@ namespace Memory
                     box.Click += CardBox_Click;
                     box.Cursor = Cursors.Hand;
 
-                    if (cardBoxes != null)
-                    {
-                        cardBoxes[i, j] = box;
-                    }
+                    cardBoxes![i, j] = box;
                     panel.Controls.Add(box);
                 }
             }
@@ -198,12 +190,10 @@ namespace Memory
 
             Carte card = game.Cards[row][col];
 
-            if (card.Status == Carte.State.Trouvée) return;
-            if (card.Status == Carte.State.Révélée) return;
+            if (card.Status != Carte.State.Cachée) return;
 
             card.Reveal();
 
-            // Affiche le numéro sur la PictureBox
             Bitmap cardImage = new Bitmap(box.Width, box.Height);
             Graphics g = Graphics.FromImage(cardImage);
             g.Clear(Color.LimeGreen);
@@ -211,7 +201,6 @@ namespace Memory
             g.Dispose();
 
             box.Image = cardImage;
-            box.SizeMode = PictureBoxSizeMode.StretchImage;
 
             selectedCount++;
 
@@ -235,58 +224,44 @@ namespace Memory
                     game.PairedCard(secondCoordinate);
                     pairs++;
 
-                    statusLabel!.Text = " Paire trouvée!";
-
-                    if (pairs == game.AllCards.Count / 2)
-                    {
-                        statusLabel!.Text = $"Gagné en {moves} essais et {timerLabel!.Text.Substring(7)}!";
-                        gameTimer!.Stop();
-                        menuButton!.Enabled = true;
-                    }
+                    statusLabel!.Text = "Paire trouvée !";
 
                     selectedCount = 0;
-                    firstCoordinate = "";
                     firstBox = null;
                     secondBox = null;
                     isCheckingPair = false;
+
                     UpdateScore();
                 }
                 else
                 {
-                    statusLabel!.Text = " Ce n'est pas une paire";
+                    statusLabel!.Text = "Ce n'est pas une paire";
 
                     Timer hideTimer = new Timer();
                     hideTimer.Interval = 1500;
+
                     PictureBox? fb = firstBox;
                     PictureBox? sb = secondBox;
+
                     hideTimer.Tick += (s, args) =>
                     {
                         game.HideCard(firstCoordinate);
                         game.HideCard(secondCoordinate);
 
-                        if (fb != null)
-                        {
-                            fb.Image = backCardImage;
-                            fb.SizeMode = PictureBoxSizeMode.StretchImage;
-                        }
-
-                        if (sb != null)
-                        {
-                            sb.Image = backCardImage;
-                            sb.SizeMode = PictureBoxSizeMode.StretchImage;
-                        }
+                        if (fb != null) fb.Image = backCardImage;
+                        if (sb != null) sb.Image = backCardImage;
 
                         hideTimer.Stop();
                         hideTimer.Dispose();
 
                         selectedCount = 0;
-                        firstCoordinate = "";
                         firstBox = null;
                         secondBox = null;
                         isCheckingPair = false;
 
                         statusLabel!.Text = "Sélectionnez deux cartes";
                     };
+
                     hideTimer.Start();
                 }
 
@@ -294,10 +269,10 @@ namespace Memory
             }
         }
 
-        private void MenuButton_Click(object? sender, EventArgs e)
+        private void QuitButton_Click(object? sender, EventArgs e)
         {
-            gameTimer!.Stop();
-            this.Close();
+            gameTimer?.Stop();
+            Application.Exit();
         }
 
         private void UpdateScore()
