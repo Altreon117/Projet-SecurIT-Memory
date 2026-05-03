@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Media;
 using System.IO;
-using Timer = System.Windows.Forms.Timer; // LA LIGNE MAGIQUE EST DE RETOUR !
+using Timer = System.Windows.Forms.Timer;
 
 namespace Memory
 {
@@ -27,6 +27,7 @@ namespace Memory
         private bool isCheckingPair = false;
 
         private Panel gamePanel;
+        private Panel gridPanel;
         private Timer gameTimer;
         private int seconds = 0;
         private int gridSize = 4;
@@ -125,16 +126,34 @@ namespace Memory
             infoPanel.Controls.Add(quitButton);
 
             gamePanel = new Panel();
-            gamePanel.Location = new Point(50, 80);
-            gamePanel.Width = 900;
-            gamePanel.Height = 750;
-            gamePanel.BackColor = Color.DarkGray;
+            gamePanel.Location = new Point(0, 60);
+            gamePanel.Size = new Size(this.ClientSize.Width, this.ClientSize.Height - 60);
+            gamePanel.BackColor = Color.ForestGreen;
+
+            gamePanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             this.Controls.Add(gamePanel);
+
+            gridPanel = new Panel();
+            gridPanel.BackColor = Color.Transparent;
+            gamePanel.Controls.Add(gridPanel);
+
+            this.Resize += Form1_Resize;
 
             gameTimer = new Timer();
             gameTimer.Interval = 1000;
             gameTimer.Tick += GameTimer_Tick;
             gameTimer.Start();
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (gridPanel != null && gamePanel != null)
+            {
+                int x = (gamePanel.Width - gridPanel.Width) / 2;
+                int y = (gamePanel.Height - gridPanel.Height) / 2;
+
+                gridPanel.Location = new Point(Math.Max(0, x), Math.Max(0, y));
+            }
         }
 
         private void GameTimer_Tick(object sender, EventArgs e)
@@ -145,12 +164,11 @@ namespace Memory
             timerLabel.Text = $"Temps: {minutes:D2}:{secs:D2}";
         }
 
-        // --- INITIALISATION DU JEU VIA LA CLASSE LISTE ---
+        // --- INITIALISATION DU JEU  ---
         private void StartNewGame()
         {
             soundPlayer?.Stop();
 
-            // On prépare les valeurs uniques (ta classe Liste va les doubler)
             List<string> imagePaths = new List<string>();
             int pairCount = (gridSize == 4) ? 8 : 18;
 
@@ -159,7 +177,6 @@ namespace Memory
                 imagePaths.Add(i.ToString());
             }
 
-            // Instanciation via ta logique métier
             game = new Liste(imagePaths);
             cardBoxes = new PictureBox[game.Rows, game.Columns];
 
@@ -172,15 +189,20 @@ namespace Memory
             isCheckingPair = false;
             seconds = 0;
 
-            gamePanel.Controls.Clear();
-            CreateCardBoxes(gamePanel);
+            gridPanel.Controls.Clear();
+            CreateCardBoxes(gridPanel);
             UpdateScore();
+
+            Form1_Resize(this, EventArgs.Empty);
         }
 
         private void CreateCardBoxes(Panel panel)
         {
             int boxSize = 80;
             int spacing = 10;
+
+            panel.Width = game.Columns * (boxSize + spacing) + spacing;
+            panel.Height = game.Rows * (boxSize + spacing) + spacing;
 
             for (int i = 0; i < game.Rows; i++)
             {
@@ -195,7 +217,6 @@ namespace Memory
                     box.SizeMode = PictureBoxSizeMode.StretchImage;
                     box.BorderStyle = BorderStyle.FixedSingle;
 
-                    // Le Tag correspond parfaitement au format attendu par tes méthodes (ex: "0:1")
                     box.Tag = $"{i}:{j}";
                     box.Click += CardBox_Click;
                     box.Cursor = Cursors.Hand;
@@ -206,7 +227,6 @@ namespace Memory
             }
         }
 
-        // --- LOGIQUE DE CLIC UTILISANT TES MÉTHODES ---
         private void CardBox_Click(object sender, EventArgs e)
         {
             if (isCheckingPair || game == null) return;
@@ -219,15 +239,12 @@ namespace Memory
             int row = int.Parse(parts[0]);
             int col = int.Parse(parts[1]);
 
-            // On accède à ta classe Carte pour vérifier son statut
             Carte card = game.Cards[row][col];
             if (card.Status != Carte.State.Cachée) return;
 
-            // Utilisation de TA méthode pour révéler
             game.RevealCard(coordinates);
             JouerSon("Flipped_Card.wav");
 
-            // Mise à jour visuelle
             Bitmap cardImage = new Bitmap(box.Width, box.Height);
             Graphics g = Graphics.FromImage(cardImage);
             g.Clear(Color.LimeGreen);
@@ -250,14 +267,11 @@ namespace Memory
                 secondCoordinate = coordinates;
                 secondBox = box;
 
-                // Utilisation de TA méthode pour vérifier la paire
                 if (game.IsPair(firstCoordinate, secondCoordinate))
                 {
-                    // Utilisation de TA méthode pour valider la paire
                     game.PairedCard(firstCoordinate);
                     game.PairedCard(secondCoordinate);
 
-                    // Utilisation de TA méthode pour vérifier la victoire finale
                     if (game.AllFound())
                     {
                         statusLabel.Text = "Niveau terminé ! Félicitations !";
@@ -290,7 +304,6 @@ namespace Memory
 
                     hideTimer.Tick += (s, args) =>
                     {
-                        // Utilisation de TA méthode pour recacher les cartes
                         game.HideCard(coord1);
                         game.HideCard(coord2);
 
