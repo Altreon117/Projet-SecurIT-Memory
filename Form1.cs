@@ -15,7 +15,6 @@ namespace Memory
         private PictureBox[,] cardBoxes;
 
         private Panel infoPanel;
-
         private Label scoreLabel;
         private Label timerLabel;
         private Label statusLabel;
@@ -93,7 +92,7 @@ namespace Memory
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine($"[ERREUR IMAGE] : {ex.Message}");
+                        Debug.WriteLine($"[ERREUR IMAGE DOS] : {ex.Message}");
                     }
                 }
 
@@ -173,7 +172,7 @@ namespace Memory
             AjusterTailleCartes();
             AjusterBarreHaut();
         }
-        *
+
         private void AjusterBarreHaut()
         {
             if (infoPanel != null && timerLabel != null && statusLabel != null)
@@ -233,13 +232,15 @@ namespace Memory
         {
             soundPlayer?.Stop();
 
-            List<string> imagePaths = new List<string>();
-            int pairCount = (gridSize == 4) ? 8 : 18;
-
-            for (int i = 1; i <= pairCount; i++)
+            List<string> imagePaths = new List<string>
             {
-                imagePaths.Add(i.ToString());
-            }
+                "FireWall.png",
+                "Password.png",
+                "Hacker.png",
+                "Server.png",
+                "AntiVirus.png",
+                "Phishing.png"
+            };
 
             game = new Liste(imagePaths);
             cardBoxes = new PictureBox[game.Rows, game.Columns];
@@ -304,30 +305,44 @@ namespace Memory
             using (Graphics g = Graphics.FromImage(cardImage))
             {
                 string frontImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "static", "images", "Card_Front.png");
-                bool imageChargee = false;
+                bool fondCharge = false;
 
                 if (File.Exists(frontImagePath))
                 {
                     try
                     {
-                        using (Image img = Image.FromFile(frontImagePath))
+                        using (Image imgFront = Image.FromFile(frontImagePath))
                         {
-                            g.DrawImage(img, 0, 0, 250, 250);
-                            imageChargee = true;
+                            g.DrawImage(imgFront, 0, 0, 250, 250);
+                            fondCharge = true;
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"[ERREUR IMAGE] : {ex.Message}");
-                    }
+                    catch (Exception ex) { Debug.WriteLine($"[ERREUR FOND] : {ex.Message}"); }
                 }
 
-                if (!imageChargee)
+                if (!fondCharge) g.Clear(Color.White);
+
+                string iconPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "static", "images", card.ImagePath);
+
+                if (File.Exists(iconPath))
                 {
-                    g.Clear(Color.LimeGreen);
-                }
+                    try
+                    {
+                        using (Image icon = Image.FromFile(iconPath))
+                        {
+                            int iconSize = 150;
+                            int x = (250 - iconSize) / 2;
+                            int y = (250 - iconSize) / 2;
 
-                g.DrawString(card.ImagePath, new Font("Arial", 50, FontStyle.Bold), Brushes.Black, 90, 80);
+                            g.DrawImage(icon, x, y, iconSize, iconSize);
+                        }
+                    }
+                    catch (Exception ex) { Debug.WriteLine($"[ERREUR ICÔNE] : {ex.Message}"); }
+                }
+                else
+                {
+                    g.DrawString(card.ImagePath, new Font("Arial", 14, FontStyle.Bold), Brushes.Black, 20, 100);
+                }
             }
             box.Image = cardImage;
 
