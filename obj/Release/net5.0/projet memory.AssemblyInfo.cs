@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("projet memory")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1e3f26c2f5ecaeada1f943e2b4ba0a43afe32e1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7aa304d02793f81c67cfeb5dbb250885f52b8720")]
 [assembly: System.Reflection.AssemblyProductAttribute("projet memory")]
 [assembly: System.Reflection.AssemblyTitleAttribute("projet memory")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

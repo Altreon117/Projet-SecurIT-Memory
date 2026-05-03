@@ -1,6 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\bin",
+    "\\bin\\Debug",
+    "\\bin\\Debug\\net10.0-windows",
+    "\\bin\\Debug\\net10.0-windows\\Image",
+    "\\bin\\Release",
+    "\\obj\\Debug",
+    "\\obj\\Debug\\net10.0-windows"
   ],
+  "SelectedNode": "\\bin\\Debug\\net10.0-windows\\Image\\antivirus.webp",
   "PreviewInSolutionExplorer": false
 }

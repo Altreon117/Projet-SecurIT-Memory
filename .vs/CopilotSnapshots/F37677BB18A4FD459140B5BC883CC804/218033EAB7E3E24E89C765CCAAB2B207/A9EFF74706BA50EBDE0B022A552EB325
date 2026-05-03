@@ -1,0 +1,108 @@
+﻿using System;
+using System.Windows.Forms;
+using System.Drawing;
+
+namespace Memory
+{
+    public class OptionsForm : Form
+    {
+        private RadioButton? grid4x4;
+        private RadioButton? grid6x6;
+        private Label? difficultyLabel;
+        private Button? confirmButton;
+        private Button? cancelButton;
+        public int SelectedGridSize = 4;
+
+        public OptionsForm()
+        {
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            this.Text = "Options - Sélectionner la difficulté";
+            this.Width = 400;
+            this.Height = 300;
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.BackColor = Color.FromArgb(20, 20, 40);
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
+            // Label Difficulté
+            difficultyLabel = new Label();
+            difficultyLabel.Text = "Sélectionnez la taille de la grille:";
+            difficultyLabel.Font = new Font("Arial", 12, FontStyle.Bold);
+            difficultyLabel.ForeColor = Color.Cyan;
+            difficultyLabel.Location = new Point(30, 30);
+            difficultyLabel.Width = 300;
+            difficultyLabel.Height = 30;
+            this.Controls.Add(difficultyLabel);
+
+            // Radio 4x4
+            grid4x4 = new RadioButton();
+            grid4x4.Text = "Facile (4×4 - 8 paires)";
+            grid4x4.Font = new Font("Arial", 11);
+            grid4x4.ForeColor = Color.White;
+            grid4x4.BackColor = Color.FromArgb(20, 20, 40);
+            grid4x4.Location = new Point(50, 80);
+            grid4x4.Width = 300;
+            grid4x4.Height = 30;
+            grid4x4.Checked = true;
+            this.Controls.Add(grid4x4);
+
+            // Radio 6x6
+            grid6x6 = new RadioButton();
+            grid6x6.Text = "Difficile (6×6 - 18 paires)";
+            grid6x6.Font = new Font("Arial", 11);
+            grid6x6.ForeColor = Color.White;
+            grid6x6.BackColor = Color.FromArgb(20, 20, 40);
+            grid6x6.Location = new Point(50, 130);
+            grid6x6.Width = 300;
+            grid6x6.Height = 30;
+            this.Controls.Add(grid6x6);
+
+            // Bouton Confirmer
+            confirmButton = new Button();
+            confirmButton.Text = "✓ Confirmer";
+            confirmButton.Font = new Font("Arial", 11, FontStyle.Bold);
+            confirmButton.Width = 120;
+            confirmButton.Height = 40;
+            confirmButton.Left = 50;
+            confirmButton.Top = 200;
+            confirmButton.BackColor = Color.LimeGreen;
+            confirmButton.ForeColor = Color.Black;
+            confirmButton.FlatStyle = FlatStyle.Flat;
+            confirmButton.Click += ConfirmButton_Click;
+            this.Controls.Add(confirmButton);
+
+            // Bouton Annuler
+            cancelButton = new Button();
+            cancelButton.Text = "✕ Annuler";
+            cancelButton.Font = new Font("Arial", 11, FontStyle.Bold);
+            cancelButton.Width = 120;
+            cancelButton.Height = 40;
+            cancelButton.Left = 230;
+            cancelButton.Top = 200;
+            cancelButton.BackColor = Color.IndianRed;
+            cancelButton.ForeColor = Color.White;
+            cancelButton.FlatStyle = FlatStyle.Flat;
+            cancelButton.Click += CancelButton_Click;
+            this.Controls.Add(cancelButton);
+        }
+
+        private void ConfirmButton_Click(object? sender, EventArgs e)
+        {
+            SelectedGridSize = grid4x4!.Checked ? 4 : 6;
+            Form1 gameForm = new Form1(SelectedGridSize);
+            gameForm.Show();
+            this.Owner?.Hide();
+            this.Close();
+        }
+
+        private void CancelButton_Click(object? sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}

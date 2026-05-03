@@ -7,22 +7,50 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\.vs\\tasks.vs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.vs\\tasks.vs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.runtimeconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bin\\Debug\\net10.0-windows\\Memory.runtimeconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.exe||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bin\\Debug\\net10.0-windows\\Memory.exe||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.dll||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bin\\Debug\\net10.0-windows\\Memory.dll||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.deps.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:bin\\Debug\\net10.0-windows\\Memory.deps.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Liste.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Liste.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\MenuPrincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MenuPrincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Carte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Carte.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\OptionsForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:OptionsForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 256,
+      "VerticalTabListWidth": 174,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
@@ -30,13 +58,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-28T09:10:59.921Z",
               "IsPinned": true,
@@ -44,16 +72,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Liste.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Liste.cs",
               "RelativeDocumentMoniker": "Liste.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Liste.cs",
               "RelativeToolTip": "Liste.cs",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-29T14:14:48.867Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -63,7 +92,7 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAGMAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-28T09:10:53.018Z",
               "IsPinned": true,
@@ -79,15 +108,103 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "tasks.vs.json",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\.vs\\tasks.vs.json",
+              "RelativeDocumentMoniker": ".vs\\tasks.vs.json",
+              "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\.vs\\tasks.vs.json",
+              "RelativeToolTip": ".vs\\tasks.vs.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-03T13:13:00.123Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Memory.runtimeconfig.json",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.runtimeconfig.json",
+              "RelativeDocumentMoniker": "bin\\Debug\\net10.0-windows\\Memory.runtimeconfig.json",
+              "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.runtimeconfig.json",
+              "RelativeToolTip": "bin\\Debug\\net10.0-windows\\Memory.runtimeconfig.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-03T12:47:38.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Memory.exe",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.exe",
+              "RelativeDocumentMoniker": "bin\\Debug\\net10.0-windows\\Memory.exe",
+              "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.exe",
+              "RelativeToolTip": "bin\\Debug\\net10.0-windows\\Memory.exe",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000165|",
+              "WhenOpened": "2026-05-03T12:47:32.289Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Memory.dll",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.dll",
+              "RelativeDocumentMoniker": "bin\\Debug\\net10.0-windows\\Memory.dll",
+              "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.dll",
+              "RelativeToolTip": "bin\\Debug\\net10.0-windows\\Memory.dll",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001697|",
+              "WhenOpened": "2026-05-03T12:47:30.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Memory.deps.json",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.deps.json",
+              "RelativeDocumentMoniker": "bin\\Debug\\net10.0-windows\\Memory.deps.json",
+              "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\bin\\Debug\\net10.0-windows\\Memory.deps.json",
+              "RelativeToolTip": "bin\\Debug\\net10.0-windows\\Memory.deps.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-03T12:47:25.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OptionsForm.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\OptionsForm.cs",
+              "RelativeDocumentMoniker": "OptionsForm.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\OptionsForm.cs",
+              "RelativeToolTip": "OptionsForm.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAADwv2wAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-30T13:16:20.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MenuPrincipal.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\MenuPrincipal.cs",
+              "RelativeDocumentMoniker": "MenuPrincipal.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\MenuPrincipal.cs",
+              "RelativeToolTip": "MenuPrincipal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-30T13:16:09.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Carte.cs",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Carte.cs",
               "RelativeDocumentMoniker": "Carte.cs",
               "ToolTip": "C:\\Users\\User\\Documents\\projet_ynov\\Projet-SecurIT-Memory\\Carte.cs",
               "RelativeToolTip": "Carte.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAgwBoAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T09:10:44.769Z"
+              "WhenOpened": "2026-04-28T09:10:44.769Z",
+              "EditorCaption": ""
             }
           ]
         }
