@@ -9,6 +9,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<!-- Les sons -->
 		<None Update="static\sounds\Flipped_Card.wav">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
@@ -19,6 +20,14 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="static\sounds\Success.wav">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+
+		<!-- Les images -->
+		<None Update="static\images\Card_Back.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="static\images\Card_Front.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

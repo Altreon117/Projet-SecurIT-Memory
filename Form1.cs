@@ -13,6 +13,9 @@ namespace Memory
     {
         private Liste game;
         private PictureBox[,] cardBoxes;
+
+        private Panel infoPanel;
+
         private Label scoreLabel;
         private Label timerLabel;
         private Label statusLabel;
@@ -49,7 +52,6 @@ namespace Memory
             StartNewGame();
         }
 
-        // --- GESTIONNAIRE DE SONS ---
         private void JouerSon(string nomFichier, bool enBoucle = false)
         {
             try
@@ -71,23 +73,44 @@ namespace Memory
             }
         }
 
-        // --- GÉNÉRATION DE L'INTERFACE ---
         private void CreateBackCardImage()
         {
-            backCardImage = new Bitmap(80, 80);
-            Graphics g = Graphics.FromImage(backCardImage);
-            g.Clear(Color.SteelBlue);
-            g.DrawString("?", new Font("Arial", 30, FontStyle.Bold), Brushes.White, 25, 20);
-            g.Dispose();
+            backCardImage = new Bitmap(250, 250);
+            using (Graphics g = Graphics.FromImage(backCardImage))
+            {
+                string backImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "static", "images", "Card_Back.png");
+                bool imageChargee = false;
+
+                if (File.Exists(backImagePath))
+                {
+                    try
+                    {
+                        using (Image img = Image.FromFile(backImagePath))
+                        {
+                            g.DrawImage(img, 0, 0, 250, 250);
+                            imageChargee = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"[ERREUR IMAGE] : {ex.Message}");
+                    }
+                }
+
+                if (!imageChargee)
+                {
+                    g.Clear(Color.SteelBlue);
+                }
+            }
         }
 
         private void CreateUI()
         {
-            Panel infoPanel = new Panel();
+            infoPanel = new Panel();
             infoPanel.Location = new Point(0, 0);
-            infoPanel.Width = this.Width;
-            infoPanel.Height = 60;
+            infoPanel.Size = new Size(this.ClientSize.Width, 60);
             infoPanel.BackColor = Color.FromArgb(30, 30, 60);
+            infoPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             this.Controls.Add(infoPanel);
 
             scoreLabel = new Label();
@@ -116,12 +139,13 @@ namespace Memory
 
             quitButton = new Button();
             quitButton.Text = "Quitter";
-            quitButton.Location = new Point(880, 15);
             quitButton.Width = 80;
             quitButton.Height = 30;
+            quitButton.Location = new Point(infoPanel.Width - quitButton.Width - 20, 15);
             quitButton.BackColor = Color.Red;
             quitButton.ForeColor = Color.White;
             quitButton.FlatStyle = FlatStyle.Flat;
+            quitButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             quitButton.Click += QuitButton_Click;
             infoPanel.Controls.Add(quitButton);
 
@@ -129,7 +153,6 @@ namespace Memory
             gamePanel.Location = new Point(0, 60);
             gamePanel.Size = new Size(this.ClientSize.Width, this.ClientSize.Height - 60);
             gamePanel.BackColor = Color.ForestGreen;
-
             gamePanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             this.Controls.Add(gamePanel);
 
@@ -147,12 +170,54 @@ namespace Memory
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            if (gridPanel != null && gamePanel != null)
+            AjusterTailleCartes();
+            AjusterBarreHaut();
+        }
+        *
+        private void AjusterBarreHaut()
+        {
+            if (infoPanel != null && timerLabel != null && statusLabel != null)
             {
-                int x = (gamePanel.Width - gridPanel.Width) / 2;
-                int y = (gamePanel.Height - gridPanel.Height) / 2;
+                timerLabel.Left = (infoPanel.Width / 3) - (timerLabel.Width / 2);
+                statusLabel.Left = (infoPanel.Width / 3) * 2 - (statusLabel.Width / 2);
+            }
+        }
 
-                gridPanel.Location = new Point(Math.Max(0, x), Math.Max(0, y));
+        private void AjusterTailleCartes()
+        {
+            if (game == null || cardBoxes == null || gridPanel == null || gamePanel == null) return;
+
+            int spacing = 15;
+            int availableWidth = gamePanel.Width - (spacing * 2);
+            int availableHeight = gamePanel.Height - (spacing * 2);
+
+            int maxWidth = availableWidth / game.Columns;
+            int maxHeight = availableHeight / game.Rows;
+            int boxSize = Math.Min(maxWidth, maxHeight) - spacing;
+
+            boxSize = Math.Max(boxSize, 50);
+            boxSize = Math.Min(boxSize, 250);
+
+            gridPanel.Width = game.Columns * (boxSize + spacing) - spacing;
+            gridPanel.Height = game.Rows * (boxSize + spacing) - spacing;
+
+            int x = (gamePanel.Width - gridPanel.Width) / 2;
+            int y = (gamePanel.Height - gridPanel.Height) / 2;
+            gridPanel.Location = new Point(Math.Max(0, x), Math.Max(0, y));
+
+            for (int i = 0; i < game.Rows; i++)
+            {
+                for (int j = 0; j < game.Columns; j++)
+                {
+                    PictureBox box = cardBoxes[i, j];
+                    if (box != null)
+                    {
+                        box.Width = boxSize;
+                        box.Height = boxSize;
+                        box.Left = j * (boxSize + spacing);
+                        box.Top = i * (boxSize + spacing);
+                    }
+                }
             }
         }
 
@@ -164,7 +229,6 @@ namespace Memory
             timerLabel.Text = $"Temps: {minutes:D2}:{secs:D2}";
         }
 
-        // --- INITIALISATION DU JEU  ---
         private void StartNewGame()
         {
             soundPlayer?.Stop();
@@ -193,29 +257,20 @@ namespace Memory
             CreateCardBoxes(gridPanel);
             UpdateScore();
 
-            Form1_Resize(this, EventArgs.Empty);
+            AjusterTailleCartes();
+            AjusterBarreHaut();
         }
 
         private void CreateCardBoxes(Panel panel)
         {
-            int boxSize = 80;
-            int spacing = 10;
-
-            panel.Width = game.Columns * (boxSize + spacing) + spacing;
-            panel.Height = game.Rows * (boxSize + spacing) + spacing;
-
             for (int i = 0; i < game.Rows; i++)
             {
                 for (int j = 0; j < game.Columns; j++)
                 {
                     PictureBox box = new PictureBox();
-                    box.Width = boxSize;
-                    box.Height = boxSize;
-                    box.Left = j * (boxSize + spacing) + spacing;
-                    box.Top = i * (boxSize + spacing) + spacing;
                     box.Image = backCardImage;
                     box.SizeMode = PictureBoxSizeMode.StretchImage;
-                    box.BorderStyle = BorderStyle.FixedSingle;
+                    box.BorderStyle = BorderStyle.None;
 
                     box.Tag = $"{i}:{j}";
                     box.Click += CardBox_Click;
@@ -245,11 +300,35 @@ namespace Memory
             game.RevealCard(coordinates);
             JouerSon("Flipped_Card.wav");
 
-            Bitmap cardImage = new Bitmap(box.Width, box.Height);
-            Graphics g = Graphics.FromImage(cardImage);
-            g.Clear(Color.LimeGreen);
-            g.DrawString(card.ImagePath, new Font("Arial", 20, FontStyle.Bold), Brushes.Black, 15, 20);
-            g.Dispose();
+            Bitmap cardImage = new Bitmap(250, 250);
+            using (Graphics g = Graphics.FromImage(cardImage))
+            {
+                string frontImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "static", "images", "Card_Front.png");
+                bool imageChargee = false;
+
+                if (File.Exists(frontImagePath))
+                {
+                    try
+                    {
+                        using (Image img = Image.FromFile(frontImagePath))
+                        {
+                            g.DrawImage(img, 0, 0, 250, 250);
+                            imageChargee = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"[ERREUR IMAGE] : {ex.Message}");
+                    }
+                }
+
+                if (!imageChargee)
+                {
+                    g.Clear(Color.LimeGreen);
+                }
+
+                g.DrawString(card.ImagePath, new Font("Arial", 50, FontStyle.Bold), Brushes.Black, 90, 80);
+            }
             box.Image = cardImage;
 
             selectedCount++;
